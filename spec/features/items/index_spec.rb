@@ -24,12 +24,21 @@ RSpec.describe '/items' do
       visit '/items'
       within("##{@item_1.id}") do
         expect(page).to have_content("Name: Item 1, Price: 5, Market: Market 1 Count of buyers: 3")
+
+        expect(page).to_not have_content("Name: Item 2, Price: 10, Market: Market 1 Count of buyers: 2")
+        expect(page).to_not have_content("Name: Item 3, Price: 25, Market: Market 2 Count of buyers: 1")
       end
       within("##{@item_2.id}") do
         expect(page).to have_content("Name: Item 2, Price: 10, Market: Market 1 Count of buyers: 2")
+
+        expect(page).to_not have_content("Name: Item 1, Price: 5, Market: Market 1 Count of buyers: 3")
+        expect(page).to_not have_content("Name: Item 3, Price: 25, Market: Market 2 Count of buyers: 1")
       end
       within("##{@item_3.id}") do
         expect(page).to have_content("Name: Item 3, Price: 25, Market: Market 2 Count of buyers: 1")
+
+        expect(page).to_not have_content("Name: Item 2, Price: 10, Market: Market 1 Count of buyers: 2")
+        expect(page).to_not have_content("Name: Item 1, Price: 5, Market: Market 1 Count of buyers: 3")
       end
     end
   end

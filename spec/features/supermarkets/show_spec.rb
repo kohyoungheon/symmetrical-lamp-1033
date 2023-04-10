@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Supermarket, type: :model do
+RSpec.describe '/items' do
   before(:each) do
     @market_1 = Supermarket.create!(name:'Market 1', location: 'Denver')
     @market_2 = Supermarket.create!(name:'Market 2', location: 'Boulder')
@@ -18,17 +18,18 @@ RSpec.describe Supermarket, type: :model do
     @ci_5 = CustomerItem.create!(customer:@c_3 ,item: @item_3)
   end
 
-  describe 'relationships' do
-    it { should have_many :items }
-  end
+  #extension 1
+  describe "/supermarkets/:id" do
+    it "displays market name and a list of unique shopper names" do
+      visit "/supermarkets/#{@market_1.id}"
+      expect(page).to have_content("Market 1")
+      expect(page).to have_content("List of unique shoppers: Adam, Bob, and Charlie")
+  
 
-  #extension
-  describe 'instance methods' do
-    describe '#unique_shoppers' do
-      it "returns a list of all unique customers at market" do
-        expect(@market_1.unique_shoppers).to eq('Adam, Bob, and Charlie')
-        expect(@market_2.unique_shoppers).to eq('Charlie')
-      end
+      visit "/supermarkets/#{@market_2.id}"
+      expect(page).to have_content("List of unique shoppers: Charlie")
+      expect(page).to_not have_content("Adam")
+      expect(page).to_not have_content("Bob")
     end
   end
 end
