@@ -1,10 +1,10 @@
 <h1>Items Index Page</h1>
-<div>
 <% @items.each do |i| %>
+<div id = "<%=i.id%>">
 Name: <%= i.name %>,
 Price: <%= i.price %>,
 Market: <%= i.get_market_name %>
 Count of buyers: <%= i.total_buyers %>
+</div>
 <br>
 <% end %>
-</div>

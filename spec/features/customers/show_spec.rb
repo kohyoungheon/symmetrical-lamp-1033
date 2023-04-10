@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe '/customers' do
+RSpec.describe '/customers/:id' do
   before(:each) do
     @market_1 = Supermarket.create!(name:'Market 1', location: 'Denver')
     @market_2 = Supermarket.create!(name:'Market 2', location: 'Boulder')
