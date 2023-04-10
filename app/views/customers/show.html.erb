@@ -5,7 +5,7 @@ Items: <% @customer.items.each do |i| %>
 <br>
       <%= i.name %>,
       <%= i.price %>,
-      <%= i.supermarket.name %>
+      <%= i.get_market_name %>
     <% end %>
 </div>
 <div id ="add_item_form">
