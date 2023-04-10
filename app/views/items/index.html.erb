@@ -1,0 +1,9 @@
+<h1>Items Index Page</h1>
+<div>
+<% @items.each do |i| %>
+Name: <%= i.name %>,
+Price: <%= i.price %>,
+Market: <%= i.supermarket.name %>
+<br>
+<% end %>
+</div>

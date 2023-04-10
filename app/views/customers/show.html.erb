@@ -1,0 +1,18 @@
+<h1>Customer Show Page</h1>
+<div id="<%=@customer.id%>">
+<p>Name: <%= @customer.name %></p>
+Items: <% @customer.items.each do |i| %>
+<br>
+      <%= i.name %>,
+      <%= i.price %>,
+      <%= i.supermarket.name %>
+    <% end %>
+</div>
+<div id ="add_item_form">
+<h2>Add an Item to <%= @customer.name %></h2>
+<%=form_with url: "/customers/#{@customer.id}/?", method: :post, local: true do |form| %>
+<%=form.label :item_Id%>
+<%=form.number_field :item_Id%><br>
+<%=form.submit "Submit"%>
+<%end %>
+</div>
